@@ -1,0 +1,20 @@
+﻿
+@{
+    //De voorgemaakte layout niet gebruiken van Razor
+    //Layout = null;
+
+
+    ViewBag.Title = "Index";
+}
+
+<h2>Index</h2>
+<h3>@ViewBag.Greeting</h3>
+
+<p>Welkom op mijn feest pagina</p>
+
+<img src="~/Content/img/Yourstory-party-hunterz-store.jpg" />
+<br /><br />
+<div class="btn btn-success">
+    @Html.ActionLink("RSVP Now", "RsvpForm")
+</div>
+

@@ -1,0 +1,23 @@
+﻿@model PartyInvites.Models.GuestResponse
+
+@{
+    //Layout = null;
+    ViewBag.Titel = "RSVP page";
+}
+
+<h2>RSVP pagina</h2>
+
+    @using (Html.BeginForm())
+    {
+        @Html.ValidationSummary()
+        <p>Uw naam : @Html.TextBoxFor(x => x.Name)</p>
+        <p>Uw email : @Html.TextBoxFor(x => x.Email)</p>
+        <p>Uw telefoon : @Html.TextBoxFor(x => x.Phone)</p>
+        <p>Zal je aanwezig zijn ?
+            @Html.DropDownListFor(x => x.WillAttend, new[]{
+                new SelectListItem() { Text = "Ja ik zal aanwezig zijn.", Value = bool.TrueString },
+                new SelectListItem() { Text = "Neen ik zal niet aanwezig zijn.", Value = bool.FalseString }
+                },"Kies een optie")</p>
+                <input type="submit" value="Verstuur RSVP" />
+    }
+

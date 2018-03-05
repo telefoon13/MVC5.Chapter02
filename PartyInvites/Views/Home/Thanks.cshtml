@@ -1,0 +1,34 @@
+﻿@model PartyInvites.Models.GuestResponse
+
+@{
+    ViewBag.Title = "Thanks";
+}
+
+<h2>Bedankt @Model.Name</h2>
+<p>
+    @if (Model.WillAttend == true)
+    {
+        @:Super dat je komt, de drank staat al koel.
+    } else
+    {
+        @:Spijtig dat je niet komt, maar toch bedankt om het te laten weten.
+    }
+</p>
+
+@{ 
+    try
+    {
+        WebMail.SmtpServer = "relay.skynet.be";
+        WebMail.SmtpPort = 25;
+        WebMail.EnableSsl = false;
+        WebMail.UserName = "";
+        WebMail.Password = "";
+        WebMail.From = "mdh@devocom.be";
+
+        WebMail.Send("mdh@devocom.be", "RSVP site - Test MVC",
+            Model.Name + " komt " + ((Model.WillAttend ?? false) ? "wel" : "niet") + " naar het feestje");
+    } catch (Exception)
+    {
+        @:Mail niet verzonden
+    }
+}
